@@ -19,7 +19,7 @@ export const insertUser = async (req: Request, res: Response) => {
         },
         profile: {
             name,
-            profilePicture: profilePicture.legth == 0 ? null : profilePicture
+            profilePicture: profilePicture || null
         }
     })
 

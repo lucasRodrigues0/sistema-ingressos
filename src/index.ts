@@ -12,5 +12,5 @@ const port = process.env.PORT ?? 3000;
 db();
 app.use(express.json());
 app.use('/api/user', userRouter);
-app.use(ErrorHandler);
+app.use(ErrorHandler); //error here
 app.listen(port, () => console.log('funcionando'));

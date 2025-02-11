@@ -1,5 +1,6 @@
 import { timeStamp } from "console";
 import mongoose, { Schema } from "mongoose";
+import { User } from "./User";
 
 const EventSchema = new Schema({
     title: {
@@ -19,8 +20,9 @@ const EventSchema = new Schema({
         required: true
     },
     createdBy: {
-        type: String,
-
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 }, {timestamps: true});
 

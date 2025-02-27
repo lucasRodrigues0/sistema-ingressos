@@ -2,21 +2,18 @@ import mongoose, { Schema } from "mongoose";
 
 const TicketSchema = new Schema({
     user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+        type: String,
         required: true
     },
-
-    event: {
-        type: Schema.Types.ObjectId,
-        ref: 'Event',
+    eventName: {
+        type: String,
         required: true
     },
-
     isValid: {
         type: Boolean,
-        required: true
+        required: true,
+        default: true
     }
 }, { timestamps: true })
 
-export const Ticket = mongoose.model('tickets', TicketSchema);
+export const Ticket = mongoose.model('Ticket', TicketSchema);

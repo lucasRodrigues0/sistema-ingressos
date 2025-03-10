@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { Ticket } from "../model/Ticket";
 import { User } from "../model/User";
 import { Event } from "../model/Event";
-import { NotFoundError } from "../error/api-errors";
+import { BadRequestError, NotFoundError } from "../error/api-errors";
 
 export const createTicket = async(req: Request, res: Response, next: NextFunction) => {
 
@@ -15,12 +15,20 @@ export const createTicket = async(req: Request, res: Response, next: NextFunctio
     if(!user) {
         throw new NotFoundError('user not found');
     }
+
     if(!event) {
         throw new NotFoundError('event not found');
     }
 
+    const ticketAlreadyExists = await Ticket.findOne({email: user.auth?.email});
+
+    if(ticketAlreadyExists) {
+        throw new BadRequestError('Ticket already emitted for this user');
+    }
+
     const ticket = await Ticket.create({
         user: user.profile?.name,
+        email: user.auth?.email,
         eventName: event.title
     });
 

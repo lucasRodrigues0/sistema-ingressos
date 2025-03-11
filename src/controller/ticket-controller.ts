@@ -20,7 +20,7 @@ export const createTicket = async(req: Request, res: Response, next: NextFunctio
         throw new NotFoundError('event not found');
     }
 
-    const ticketAlreadyExists = await Ticket.findOne({user: user._id});
+    const ticketAlreadyExists = await Ticket.findOne({user: user._id, event: event._id});
 
     if(ticketAlreadyExists) {
         throw new BadRequestError('Ticket already emitted for this user');

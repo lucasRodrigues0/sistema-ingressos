@@ -5,11 +5,7 @@ const TicketSchema = new Schema({
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true
-    },
-    eventName: {
+    event: {
         type: String,
         required: true
     },

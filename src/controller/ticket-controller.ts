@@ -62,7 +62,7 @@ export const getAllTickets = async(req: Request, res: Response, next: NextFuncti
         throw new NotFoundError('event not found');
     }
 
-    if(user.profile?.name !== event.createdBy) {
+    if(user._id.toString() !== event.createdBy) {
         throw new BadRequestError('Not authorized for this operation');
     }
 

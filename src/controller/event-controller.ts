@@ -19,7 +19,7 @@ export const createEvent = async (req: Request, res: Response, next: NextFunctio
         description,
         startDate: startDate,
         endDate: endDate,
-        createdBy: user.profile?.name
+        createdBy
     })
 
     await event.save();
